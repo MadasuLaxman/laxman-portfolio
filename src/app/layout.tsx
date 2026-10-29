@@ -58,14 +58,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#07080c" },
-    { media: "(prefers-color-scheme: light)", color: "#f6f7f9" },
-  ],
+  themeColor: "#07080c",
 };
 
-// Applies the saved theme, or the OS preference, before first paint so there is no flash.
-const themeScript = `(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}document.documentElement.dataset.theme=t})()`;
+// Applies the saved theme before first paint so there is no flash. Dark is the default.
+const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
 
 const personJsonLd = {
   "@context": "https://schema.org",

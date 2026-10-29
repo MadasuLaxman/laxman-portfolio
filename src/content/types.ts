@@ -65,6 +65,8 @@ export type Project = {
   diagram: Diagram;
   decisions: Decision[];
   validation: { title: string; body: string }[];
+  /** What each piece of evidence measures, and where its limits are. No new claims. */
+  evidence?: { metric: string; measures: string; doesNotShow: string }[];
   /** Resume bullets: what I personally did. */
   contributions: string[];
   /** Optional deeper story, e.g. a debugging investigation. */

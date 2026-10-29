@@ -217,6 +217,39 @@ async function CaseStudy({ params }: { params: PageProps<"/projects/[slug]">["pa
                   </li>
                 ))}
               </ul>
+
+              {project.evidence ? (
+                <div className="reveal mt-8">
+                  <h3 className="font-mono text-[0.7rem] tracking-[0.12em] text-fg-subtle uppercase">
+                    Reading the numbers
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-fg-muted">
+                    What each figure measures, and what it doesn&apos;t prove.
+                  </p>
+                  <dl className="mt-4 overflow-hidden rounded-2xl border border-border bg-surface">
+                    {project.evidence.map((item) => (
+                      <div
+                        key={item.metric}
+                        className="grid gap-3 border-b border-border px-5 py-4 last:border-b-0 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)] md:gap-6"
+                      >
+                        <dt className="font-mono text-sm font-medium text-fg">{item.metric}</dt>
+                        <dd className="text-sm leading-relaxed text-fg-muted">
+                          <span className="mb-1 block font-mono text-[0.65rem] tracking-[0.12em] text-success uppercase">
+                            Measures
+                          </span>
+                          {item.measures}
+                        </dd>
+                        <dd className="text-sm leading-relaxed text-fg-muted">
+                          <span className="mb-1 block font-mono text-[0.65rem] tracking-[0.12em] text-fg-subtle uppercase">
+                            Doesn&apos;t show
+                          </span>
+                          {item.doesNotShow}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ) : null}
             </CaseSection>
 
             {project.story ? (

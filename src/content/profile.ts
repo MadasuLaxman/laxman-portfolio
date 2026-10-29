@@ -1,6 +1,6 @@
 import type { Certification, Education, Metric, NavItem, SocialLink } from "./types";
 
-// Every value here is taken from the resume (see docs/RESUME_ANALYSIS.md).
+// Every value here is taken from the resume in public/resume/.
 export const profile = {
   name: "Laxman Madasu",
   initials: "LM",

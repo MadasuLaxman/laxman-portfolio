@@ -1,7 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useSyncExternalStore, type MouseEvent } from "react";
+import { useSyncExternalStore, type MouseEvent } from "react";
 import { cn } from "./ui";
 
 type Theme = "light" | "dark";
@@ -16,28 +16,10 @@ function getTheme(): Theme {
   return document.documentElement.dataset.theme === "light" ? "light" : "dark";
 }
 
-function savedTheme(): string | null {
-  try {
-    return localStorage.getItem("theme");
-  } catch {
-    return null;
-  }
-}
-
 export function ThemeToggle({ className }: { className?: string }) {
   // null on the server, so the label is only rendered once the real theme is known.
   const theme = useSyncExternalStore<Theme | null>(subscribe, getTheme, () => null);
   const next: Theme = theme === "light" ? "dark" : "light";
-
-  // Follow the OS setting until the visitor picks a theme themselves.
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-color-scheme: light)");
-    function onSystemChange() {
-      if (!savedTheme()) document.documentElement.dataset.theme = query.matches ? "light" : "dark";
-    }
-    query.addEventListener("change", onSystemChange);
-    return () => query.removeEventListener("change", onSystemChange);
-  }, []);
 
   function toggle(event: MouseEvent<HTMLButtonElement>) {
     const apply = () => {

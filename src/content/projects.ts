@@ -98,6 +98,23 @@ export const projects: Project[] = [
       { title: "300-prompt benchmark corpus", body: "A wider prompt set used, with the unit tests, to validate streaming generation and session version history." },
       { title: "265 unit tests", body: "Automated checks run alongside the benchmark corpus." },
     ],
+    evidence: [
+      {
+        metric: "Structure validity: 33% → 100%",
+        measures: "The share of generated page trees in the 12-page evaluation set that pass schema validation.",
+        doesNotShow: "Visual quality or user satisfaction, and 12 pages is a small sample, so it isn't a general accuracy rate.",
+      },
+      {
+        metric: "Component correctness: 98.8% → 100%",
+        measures: "Whether the components in the generated pages are correct, on the same 12-page set.",
+        doesNotShow: "Layout or design quality beyond component choice.",
+      },
+      {
+        metric: "300-prompt benchmark corpus and 265 unit tests",
+        measures: "Breadth of automated checks behind streaming generation and session version history.",
+        doesNotShow: "A pass rate on the corpus; no figure for it is published here.",
+      },
+    ],
     contributions: [
       "Engineered the FastAPI + MongoDB LLM platform that converts natural-language prompts into schema-valid UI page trees.",
       "Architected the multi-stage RAG generation pipeline: planner, grounded generator, validator, self-repair and quality scorer.",
@@ -197,6 +214,18 @@ export const projects: Project[] = [
     validation: [
       { title: "190-test suite", body: "Validates the reliability primitives: circuit breakers, locking, idempotency, dead-letter queues and retry/timeout policies." },
       { title: "Agent reliability fix", body: "A multi-turn tool-calling failure was traced to cross-turn context persistence and fixed." },
+    ],
+    evidence: [
+      {
+        metric: "190-test suite",
+        measures: "That circuit breakers, locking, idempotency, dead-letter queues and retry/timeout policies behave as designed under test.",
+        doesNotShow: "Behavior under production load, or uptime.",
+      },
+      {
+        metric: "Tool-call success stuck at 57%",
+        measures: "The multi-turn agent failure rate before the fix.",
+        doesNotShow: "The success rate after the fix; that figure isn't stated, only that multi-step tool execution became reliable.",
+      },
     ],
     story: {
       title: "Debugging multi-turn agent reliability",
@@ -305,6 +334,18 @@ export const projects: Project[] = [
     validation: [
       { title: "Human review step", body: "Users review and correct extracted records in Streamlit before they are saved to MongoDB." },
       { title: "Feedback into rules", body: "Frequent corrections are promoted into the live rule set, so the classifier improves from review." },
+    ],
+    evidence: [
+      {
+        metric: "5 document types, 4 extraction engines, 5 LLM providers",
+        measures: "The scope of what the pipeline handles and integrates.",
+        doesNotShow: "Extraction accuracy; no accuracy metric is published for this project.",
+      },
+      {
+        metric: "No LLM calls for totals, vendors and line items",
+        measures: "That the standard extraction path is deterministic OCR and layout rules.",
+        doesNotShow: "How often documents fall back to the LLM path for non-standard layouts.",
+      },
     ],
     contributions: [
       "Built the document-intelligence ETL platform for receipts, W-2s, Form 1099 variants, bank statements and invoices.",
