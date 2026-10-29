@@ -1,0 +1,120 @@
+import type { SkillGroup } from "./types";
+
+// Only skills listed on the resume or named in its project bullets.
+// Order matters: with the two wide cards here, the bento grid fills every row
+// at both two and three columns (see sections/skills.tsx).
+export const skillGroups: SkillGroup[] = [
+  {
+    title: "Generative AI & LLM applications",
+    description: "Turning model output into something a program can rely on.",
+    icon: "sparkles",
+    skills: [
+      "LLMs",
+      "Prompt engineering",
+      "Structured JSON generation",
+      "Function / tool calling",
+      "LangChain",
+    ],
+  },
+  {
+    title: "RAG & retrieval",
+    description: "Grounding generation in a known corpus.",
+    icon: "search",
+    skills: [
+      "Retrieval-augmented generation (RAG)",
+      "Dense embeddings",
+      "BM25",
+      "Hybrid retrieval",
+      "Reciprocal Rank Fusion",
+      "Vector search",
+      "ChromaDB",
+    ],
+  },
+  {
+    title: "AI agents & orchestration",
+    description: "Multi-step pipelines and agents that call tools.",
+    icon: "bot",
+    skills: [
+      "AI agents",
+      "Multi-agent pipelines",
+      "Multi-stage generation pipelines",
+      "Provider-agnostic LLM layers",
+      "Cross-provider fallback",
+    ],
+  },
+  {
+    title: "Backend, APIs & reliability",
+    description: "Services and the failure handling around them.",
+    icon: "server",
+    wide: true,
+    skills: [
+      "Python",
+      "FastAPI",
+      "REST API design",
+      "Async / await",
+      "SSE streaming",
+      "Circuit breakers",
+      "Distributed locking",
+      "Idempotency",
+      "Dead-letter queues",
+      "Multi-tenant isolation",
+    ],
+  },
+  {
+    title: "LLM providers",
+    description: "Integrated behind a single interface.",
+    icon: "network",
+    skills: ["OpenAI", "Anthropic", "Gemini", "Groq", "DeepSeek", "Ollama"],
+  },
+  {
+    title: "Databases & vector stores",
+    description: "Operational data and retrieval indexes.",
+    icon: "database",
+    skills: ["MongoDB (Motor)", "MySQL", "ChromaDB"],
+  },
+  {
+    title: "Document intelligence",
+    description: "Extracting structured data from scans and PDFs.",
+    icon: "scan",
+    skills: ["OCR", "PaddleOCR", "Tesseract", "PyMuPDF", "pdfplumber"],
+  },
+  {
+    title: "Data science",
+    description: "Analysis, visualization and text/image processing.",
+    icon: "chart",
+    skills: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "NLTK", "OpenCV"],
+  },
+  {
+    title: "Machine learning & deep learning",
+    description: "The classical toolkit underneath.",
+    icon: "brain",
+    wide: true,
+    skills: [
+      "Supervised & unsupervised learning",
+      "Feature engineering",
+      "Data preprocessing",
+      "Hyperparameter tuning",
+      "Model deployment",
+      "ANNs",
+      "CNNs",
+      "RNNs",
+      "Data augmentation",
+      "Regularization",
+      "TensorFlow",
+      "Scikit-learn",
+    ],
+  },
+  {
+    title: "Cloud, deployment & tools",
+    description: "Shipping and running the work.",
+    icon: "cloud",
+    skills: [
+      "AWS (EC2, S3, Lambda, SQS)",
+      "Docker",
+      "Docker Compose",
+      "Streamlit",
+      "Git",
+      "GitHub",
+    ],
+  },
+];

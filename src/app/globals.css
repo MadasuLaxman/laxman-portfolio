@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+/* Theme: dark is the default; [data-theme="light"] is set by the theme toggle. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #07080c;
+  --surface: #0d1016;
+  --surface-2: #131720;
+  --border: #1d2230;
+  --border-strong: #2b3242;
+  --fg: #e9ebf1;
+  --fg-muted: #a1a9b8;
+  --fg-subtle: #7f889a;
+  --accent: #7c95ff;
+  --accent-strong: #a3b4ff;
+  --accent-soft: rgb(124 149 255 / 0.1);
+  --accent-contrast: #05070d;
+  --accent-2: #b794ff;
+  --success: #5ad48f;
+  --danger: #ff7a85;
+  --grid-line: rgb(255 255 255 / 0.035);
+  --glow: rgb(124 149 255 / 0.13);
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 20px 40px -24px rgb(0 0 0 / 0.8);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --border: #e1e4ea;
+  --border-strong: #c9cfd9;
+  --fg: #0b0d12;
+  --fg-muted: #444c5c;
+  --fg-subtle: #5c6576;
+  --accent: #3550c9;
+  --accent-strong: #263d9e;
+  --accent-soft: rgb(53 80 201 / 0.08);
+  --accent-contrast: #ffffff;
+  --accent-2: #7c3aed;
+  --success: #17803f;
+  --danger: #c2283a;
+  --grid-line: rgb(11 13 18 / 0.045);
+  --glow: rgb(53 80 201 / 0.08);
+  --shadow: 0 1px 2px rgb(11 13 18 / 0.04), 0 16px 32px -24px rgb(11 13 18 / 0.25);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-2: var(--accent-2);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --shadow-card: var(--shadow);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Faint engineering-paper grid, faded towards the bottom. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  .bg-glow {
+    background: radial-gradient(60% 50% at 70% 0%, var(--glow), transparent 70%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-rise {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Motion and effects ----------
+   Everything below is decorative. Each effect is disabled under
+   prefers-reduced-motion, and content stays visible where unsupported. */
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Scroll reveal with scroll-driven animations: no JavaScript, and browsers
+   without support simply show the content. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Cursor spotlight on cards. --spot-x/--spot-y are set by <SpotlightEffect />. */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Animated gradient border around the portrait. */
+@property --frame-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.photo-frame {
+  background: conic-gradient(
+    from var(--frame-angle),
+    var(--border-strong) 0% 50%,
+    var(--accent) 66%,
+    var(--accent-2) 78%,
+    var(--border-strong) 92%
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .photo-frame {
+    animation: frame-spin 9s linear infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes frame-spin {
+  to {
+    --frame-angle: 360deg;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+/* Circular reveal when switching theme (see ThemeToggle). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
