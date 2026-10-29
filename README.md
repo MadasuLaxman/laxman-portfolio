@@ -36,7 +36,7 @@ add your range there if your network uses a different one, or the page won't bec
 | --------------- | -------------------------------------------- |
 | `npm run dev`   | Development server with hot reload           |
 | `npm run lint`  | ESLint (Next.js core-web-vitals + TypeScript) |
-| `npm run typecheck` | TypeScript check (`tsc --noEmit`)        |
+| `npm run typecheck` | Generates Next.js route types, then runs `tsc --noEmit` |
 | `npm run build` | Production build                             |
 | `npm run start` | Serve the production build                   |
 | `npm run test:e2e` | Playwright smoke tests against the production build (run `build` first) |
