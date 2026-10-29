@@ -174,8 +174,10 @@ export function PipelineDemo() {
                   >
                     <StatusIcon status={status} />
                     <span className="flex-1">{stage.label}</span>
-                    {stage.label === "Planner" && showPlan ? <Chips items={PLAN} /> : null}
-                    {stage.label === "Hybrid retrieval" && showRetrieved ? <Chips items={RETRIEVED} accent /> : null}
+                    {stage.label === "Planner" && showPlan ? <Chips items={PLAN} animate={started} /> : null}
+                    {stage.label === "Hybrid retrieval" && showRetrieved ? (
+                      <Chips items={RETRIEVED} accent animate={started} />
+                    ) : null}
                     {stage.label === "Validator" && status === "error" ? (
                       <span className="font-mono text-[0.68rem] text-danger">1 issue</span>
                     ) : null}
@@ -189,7 +191,8 @@ export function PipelineDemo() {
           <div className="flex min-w-0 flex-col p-4 sm:p-5">
             <div className="flex items-center justify-between">
               <p className="font-mono text-[0.68rem] tracking-[0.12em] text-fg-subtle uppercase">Page tree · JSON</p>
-              <AnimatePresence>
+              {/* initial={false}: the server-rendered finished state shows at full opacity. */}
+              <AnimatePresence initial={false}>
                 {valid ? (
                   <motion.span
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -241,13 +244,13 @@ function StatusIcon({ status }: { status: Status }) {
   return <span className="mx-[5px] size-1.5 shrink-0 rounded-full bg-border-strong" />;
 }
 
-function Chips({ items, accent = false }: { items: string[]; accent?: boolean }) {
+function Chips({ items, accent = false, animate }: { items: string[]; accent?: boolean; animate: boolean }) {
   return (
     <span className="hidden flex-wrap justify-end gap-1 sm:flex">
       {items.map((item, index) => (
         <motion.span
           key={item}
-          initial={{ opacity: 0, y: 4 }}
+          initial={animate ? { opacity: 0, y: 4 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.12 }}
           className={cn(

@@ -41,8 +41,9 @@
   --accent-soft: rgb(53 80 201 / 0.08);
   --accent-contrast: #ffffff;
   --accent-2: #7c3aed;
-  --success: #17803f;
-  --danger: #c2283a;
+  /* Dark enough to keep 4.5:1 on their own 10–15% tints (badges). */
+  --success: #126b34;
+  --danger: #a91d33;
   --grid-line: rgb(11 13 18 / 0.045);
   --glow: rgb(53 80 201 / 0.08);
   --shadow: 0 1px 2px rgb(11 13 18 / 0.04), 0 16px 32px -24px rgb(11 13 18 / 0.25);
@@ -120,6 +121,22 @@
   .animate-rise {
     animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     animation-delay: var(--delay, 0ms);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-lift {
+    animation: lift 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
+}
+
+@keyframes lift {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: none;
   }
 }
 

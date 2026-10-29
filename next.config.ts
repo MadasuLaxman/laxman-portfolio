@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
+  images: {
+    // AVIF first where the browser supports it; WebP otherwise.
+    formats: ["image/avif", "image/webp"],
+  },
   // Lets phones and other machines on the local network use `next dev`
   // (otherwise the dev server blocks its scripts and the page never hydrates).
   allowedDevOrigins: ["192.168.*.*"],

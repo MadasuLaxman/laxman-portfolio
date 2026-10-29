@@ -120,7 +120,9 @@ export function Hero() {
 
 function Portrait() {
   return (
-    <div className="animate-rise relative mx-auto w-full max-w-[22rem] sm:max-w-sm lg:max-w-none" style={rise(160)}>
+    // Transform-only entrance: the portrait is the mobile LCP element, and an
+    // opacity fade would delay when the browser counts it as painted.
+    <div className="animate-lift relative mx-auto w-full max-w-[22rem] sm:max-w-sm lg:max-w-none" style={rise(160)}>
       <div
         aria-hidden="true"
         className="absolute -inset-8 rounded-[3rem] bg-[radial-gradient(closest-side,var(--glow),transparent)] blur-2xl"
@@ -131,7 +133,8 @@ function Portrait() {
             src={portrait}
             alt={`Portrait of ${profile.name}`}
             placeholder="blur"
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="(min-width: 1024px) 420px, (min-width: 640px) 384px, 352px"
             className="aspect-[4/5] w-full object-cover object-[50%_20%]"
           />

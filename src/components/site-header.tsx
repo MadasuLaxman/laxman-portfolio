@@ -80,11 +80,7 @@ export function SiteHeader() {
     <MotionConfig reducedMotion="user">
       <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md supports-[backdrop-filter]:bg-bg/70">
         <Container className="flex h-16 items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="group flex items-center gap-3 rounded-md"
-            aria-label={`${profile.name}, home`}
-          >
+          <Link href="/" className="group flex items-center gap-3 rounded-md">
             <span
               aria-hidden="true"
               className="flex size-8 items-center justify-center rounded-md border border-border-strong bg-surface font-mono text-xs font-semibold text-accent transition-colors group-hover:border-accent"
@@ -92,6 +88,8 @@ export function SiteHeader() {
               {profile.initials}
             </span>
             <span className="text-sm font-semibold tracking-tight whitespace-nowrap">{profile.name}</span>
+            {/* Extends the visible name rather than replacing it, so voice control still matches. */}
+            <span className="sr-only">, home</span>
           </Link>
 
           <nav aria-label="Primary" className="hidden md:block">

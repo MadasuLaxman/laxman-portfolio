@@ -39,7 +39,8 @@ npm run test:e2e        # starts the production server on port 3100 itself
 
 The first time on a new machine, install the test browser with `npx playwright install chromium`.
 `npm run test:e2e` covers the home page, desktop and mobile navigation, theme switching, every case study,
-the 404 page, the resume download and the SEO routes, at desktop and mobile sizes.
+the 404 page, the resume download and the SEO routes, plus an automated WCAG 2.1 A/AA accessibility scan
+in both themes, at desktop and mobile sizes.
 
 ## Canonical URL
 

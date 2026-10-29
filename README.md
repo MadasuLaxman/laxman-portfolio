@@ -43,9 +43,14 @@ add your range there if your network uses a different one, or the page won't bec
 
 ## Testing
 
-`e2e/smoke.spec.ts` covers the home page, desktop and mobile navigation, theme switching, every case study,
-the 404 page, the resume download and the SEO routes, in a desktop and a mobile viewport. The same checks
-run in GitHub Actions on every push to `main` and on pull requests (`.github/workflows/ci.yml`).
+- `e2e/smoke.spec.ts` covers the home page, desktop and mobile navigation, theme switching, every case
+  study, the 404 page, the resume download and the SEO routes.
+- `e2e/accessibility.spec.ts` runs an automated WCAG 2.1 A/AA scan ([axe-core](https://github.com/dequelabs/axe-core))
+  on the home page and a case study, in both themes. It catches regressions such as low contrast or missing
+  labels; it doesn't replace manual keyboard and screen-reader testing.
+
+Both run in a desktop and a mobile viewport, in GitHub Actions on every push to `main` and on pull requests
+(`.github/workflows/ci.yml`).
 
 ```bash
 npx playwright install chromium   # first time only
