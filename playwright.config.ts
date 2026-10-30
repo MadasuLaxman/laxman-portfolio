@@ -22,7 +22,9 @@ export default defineConfig({
   webServer: {
     command: `npm run start -- -p ${port}`,
     url: `http://localhost:${port}`,
-    reuseExistingServer: !process.env.CI,
+    // Never reuse: a leftover server on this port would be tested instead of the
+    // current build. If the port is busy, the run fails loudly instead.
+    reuseExistingServer: false,
     timeout: 60_000,
   },
 });

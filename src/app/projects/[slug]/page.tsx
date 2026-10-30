@@ -196,7 +196,7 @@ async function CaseStudy({ params }: { params: PageProps<"/projects/[slug]">["pa
             <CaseSection id={anchor("decisions")} title="Decisions and trade-offs">
               <div className="grid gap-4 md:grid-cols-2">
                 {project.decisions.map((decision) => (
-                  <div key={decision.title} className="reveal spotlight flex flex-col rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-border-strong sm:p-6">
+                  <div key={decision.title} className="reveal spotlight flex flex-col rounded-2xl border border-border bg-surface shadow-card p-5 transition-colors hover:border-border-strong sm:p-6">
                     <h3 className="font-medium tracking-tight">{decision.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-fg-muted">{decision.body}</p>
                     <p className="mt-4 border-t border-border pt-3 text-sm leading-relaxed text-fg-muted">
@@ -211,7 +211,7 @@ async function CaseStudy({ params }: { params: PageProps<"/projects/[slug]">["pa
             <CaseSection id={anchor("validation")} title="Validation and reliability">
               <ul className="grid gap-4 sm:grid-cols-2">
                 {project.validation.map((item) => (
-                  <li key={item.title} className="reveal spotlight rounded-2xl border border-border bg-surface p-5">
+                  <li key={item.title} className="reveal spotlight rounded-2xl border border-border bg-surface shadow-card p-5">
                     <p className="font-medium tracking-tight">{item.title}</p>
                     <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{item.body}</p>
                   </li>
@@ -226,7 +226,7 @@ async function CaseStudy({ params }: { params: PageProps<"/projects/[slug]">["pa
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-fg-muted">
                     What each figure measures, and what it doesn&apos;t prove.
                   </p>
-                  <dl className="mt-4 overflow-hidden rounded-2xl border border-border bg-surface">
+                  <dl className="mt-4 overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
                     {project.evidence.map((item) => (
                       <div
                         key={item.metric}
@@ -254,7 +254,7 @@ async function CaseStudy({ params }: { params: PageProps<"/projects/[slug]">["pa
 
             {project.story ? (
               <CaseSection id={anchor("debugging")} title={project.story.title}>
-                <dl className="overflow-hidden rounded-2xl border border-border bg-surface">
+                <dl className="overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
                   {[
                     { term: "Symptom", text: project.story.problem },
                     { term: "Cause", text: project.story.cause },
@@ -291,7 +291,7 @@ async function CaseStudy({ params }: { params: PageProps<"/projects/[slug]">["pa
       <Container className="pb-20">
         <nav
           aria-label="More projects"
-          className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6"
+          className="flex flex-col gap-4 rounded-2xl border border-border bg-surface shadow-card p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6"
         >
           <Link href={`/projects/${next.slug}`} prefetch className="group">
             <span className="font-mono text-[0.7rem] tracking-[0.12em] text-fg-subtle uppercase">Next case study</span>

@@ -49,6 +49,7 @@ export function Section({
   description,
   children,
   className,
+  band = false,
 }: {
   id: string;
   index: string;
@@ -57,10 +58,16 @@ export function Section({
   description?: string;
   children: ReactNode;
   className?: string;
+  /** Alternating background band (visible in the light theme only). */
+  band?: boolean;
 }) {
   const headingId = `${id}-heading`;
   return (
-    <section id={id} aria-labelledby={headingId} className={cn("border-t border-border py-20 sm:py-28", className)}>
+    <section
+      id={id}
+      aria-labelledby={headingId}
+      className={cn("border-t border-border py-20 sm:py-28", band && "section-band", className)}
+    >
       <Container>
         <header className="reveal mb-12 max-w-2xl sm:mb-16">
           <Eyebrow>

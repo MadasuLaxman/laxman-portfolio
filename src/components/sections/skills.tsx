@@ -45,7 +45,7 @@ export function Skills() {
             <li
               key={group.title}
               className={cn(
-                "reveal spotlight flex flex-col rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-border-strong sm:p-6",
+                "reveal spotlight flex flex-col rounded-2xl border border-border bg-surface shadow-card p-5 transition-colors hover:border-border-strong sm:p-6",
                 group.wide && "md:col-span-2",
               )}
             >

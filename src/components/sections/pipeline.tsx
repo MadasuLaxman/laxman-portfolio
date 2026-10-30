@@ -7,6 +7,7 @@ export function Pipeline() {
   return (
     <Section
       id="pipeline"
+      band
       index="02"
       label="In motion"
       title="Watch a request move through a validated LLM pipeline."

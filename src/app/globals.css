@@ -23,6 +23,8 @@
   --danger: #ff7a85;
   --grid-line: rgb(255 255 255 / 0.035);
   --glow: rgb(124 149 255 / 0.13);
+  --glow-2: transparent;
+  --band: transparent;
   --shadow: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 20px 40px -24px rgb(0 0 0 / 0.8);
 }
 
@@ -31,7 +33,7 @@
   --bg: #f6f7f9;
   --surface: #ffffff;
   --surface-2: #eef0f4;
-  --border: #e1e4ea;
+  --border: #dce0e8;
   --border-strong: #c9cfd9;
   --fg: #0b0d12;
   --fg-muted: #444c5c;
@@ -44,9 +46,12 @@
   /* Dark enough to keep 4.5:1 on their own 10–15% tints (badges). */
   --success: #126b34;
   --danger: #a91d33;
-  --grid-line: rgb(11 13 18 / 0.045);
-  --glow: rgb(53 80 201 / 0.08);
-  --shadow: 0 1px 2px rgb(11 13 18 / 0.04), 0 16px 32px -24px rgb(11 13 18 / 0.25);
+  /* On a light page, tints need more strength to read as atmosphere. */
+  --grid-line: rgb(11 13 18 / 0.06);
+  --glow: rgb(53 80 201 / 0.16);
+  --glow-2: rgb(124 58 237 / 0.1);
+  --band: linear-gradient(180deg, #eef1f7, #f3f5f9);
+  --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 12px 32px -12px rgb(16 24 40 / 0.14);
 }
 
 @theme inline {
@@ -113,7 +118,14 @@
   }
 
   .bg-glow {
-    background: radial-gradient(60% 50% at 70% 0%, var(--glow), transparent 70%);
+    background:
+      radial-gradient(60% 50% at 70% 0%, var(--glow), transparent 70%),
+      radial-gradient(40% 40% at 95% 30%, var(--glow-2), transparent 70%);
+  }
+
+  /* Alternating section background: a soft band in light, nothing in dark. */
+  .section-band {
+    background: var(--band);
   }
 }
 

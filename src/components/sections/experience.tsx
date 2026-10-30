@@ -7,14 +7,14 @@ import { Section } from "../ui";
 
 export function Experience() {
   return (
-    <Section id="experience" index="04" label="Experience" title="Where I've done this work.">
+    <Section band id="experience" index="04" label="Experience" title="Where I've done this work.">
       <ol className="space-y-6">
         {experience.map((role) => {
           const roleProjects = role.projectSlugs.map(getProject).filter((project) => project !== undefined);
           return (
             <li
               key={`${role.company}-${role.startISO}`}
-              className="reveal spotlight grid gap-6 rounded-2xl border border-border bg-surface p-5 shadow-card sm:p-8 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10"
+              className="reveal spotlight grid gap-6 rounded-2xl border border-border bg-surface shadow-card p-5 shadow-card sm:p-8 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10"
             >
               <div className="space-y-2 text-sm">
                 <p className="font-mono text-fg">
@@ -78,7 +78,7 @@ export function Experience() {
       </ol>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
-        <div className="reveal spotlight rounded-2xl border border-border bg-surface p-5 sm:p-8">
+        <div className="reveal spotlight rounded-2xl border border-border bg-surface shadow-card p-5 sm:p-8">
           <h3 className="flex items-center gap-2 font-mono text-xs tracking-[0.12em] text-fg-subtle uppercase">
             <GraduationCap aria-hidden="true" className="size-4" />
             Education
@@ -94,7 +94,7 @@ export function Experience() {
           </ul>
         </div>
 
-        <div className="reveal spotlight rounded-2xl border border-border bg-surface p-5 sm:p-8">
+        <div className="reveal spotlight rounded-2xl border border-border bg-surface shadow-card p-5 sm:p-8">
           <h3 className="font-mono text-xs tracking-[0.12em] text-fg-subtle uppercase">Certifications &amp; training</h3>
           <ul className="mt-5 space-y-5">
             {certifications.map((cert) => (
