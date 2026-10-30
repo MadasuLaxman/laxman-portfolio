@@ -1,11 +1,11 @@
-import { ArrowDown, Download, Layers, Mail, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowDown, Download, Mail, Sparkles } from "lucide-react";
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import portrait from "@/assets/laxman-madasu.jpg";
 import { heroMetrics, profile, socialLinks, techStrip } from "@/content/profile";
 import { GitHubIcon, LinkedInIcon } from "../brand-icons";
 import { RotatingText } from "../rotating-text";
-import { buttonStyles, cn, Container } from "../ui";
+import { buttonStyles, Container } from "../ui";
 
 // Staggered entrance done in CSS so the hero text needs no client JavaScript.
 function rise(delay: number): CSSProperties {
@@ -153,58 +153,6 @@ function Portrait() {
           </div>
         </div>
       </div>
-
-      <FloatingChip
-        className="-top-4 -left-3 sm:-left-8"
-        delay="0s"
-        icon={<ShieldCheck aria-hidden="true" className="size-4 text-success" />}
-        value="33% → 100%"
-        label="structure validity"
-      />
-      <FloatingChip
-        className="top-1/2 -right-3 sm:-right-8"
-        delay="-2s"
-        icon={<Layers aria-hidden="true" className="size-4 text-accent" />}
-        value="6 LLM providers"
-        label="one interface"
-      />
-      <FloatingChip
-        className="bottom-24 -left-3 sm:-left-10"
-        delay="-4s"
-        icon={<Sparkles aria-hidden="true" className="size-4 text-accent-2" />}
-        value="154 components"
-        label="hybrid RAG index"
-      />
-    </div>
-  );
-}
-
-function FloatingChip({
-  className,
-  delay,
-  icon,
-  value,
-  label,
-}: {
-  className: string;
-  delay: string;
-  icon: ReactNode;
-  value: string;
-  label: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "animate-float absolute z-10 flex items-center gap-2.5 rounded-xl border border-border-strong bg-surface/85 px-3 py-2 shadow-card backdrop-blur-md",
-        className,
-      )}
-      style={{ "--float-delay": delay } as CSSProperties}
-    >
-      <span className="flex size-7 items-center justify-center rounded-lg bg-surface-2">{icon}</span>
-      <span className="leading-tight">
-        <span className="block font-mono text-xs font-medium text-fg">{value}</span>
-        <span className="block text-[0.7rem] text-fg-muted">{label}</span>
-      </span>
     </div>
   );
 }

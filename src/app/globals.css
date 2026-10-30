@@ -233,11 +233,6 @@
     animation: frame-spin 9s linear infinite;
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: var(--float-delay, 0s);
-  }
-
   .marquee-track {
     animation: marquee 40s linear infinite;
   }
@@ -250,16 +245,6 @@
 @keyframes frame-spin {
   to {
     --frame-angle: 360deg;
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
   }
 }
 
